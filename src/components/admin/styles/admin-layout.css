@@ -1,0 +1,29 @@
+.admin-layout {
+    display: flex;
+    width: 100%;
+}
+
+.admin-layout .top {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    position: absolute;
+    right: 0;
+    width: calc(100% - 315px);
+    transition: 0.5s;
+}
+
+.admin-layout .top.activo {
+    width: 96.2%;
+}
+
+.admin-layout main {
+    width: 100%;
+    left: 300px;
+    transition: 0.5s;
+}
+
+.admin-layout main.activo {
+    width: calc(100% - 80px);
+    left: 80px;
+}

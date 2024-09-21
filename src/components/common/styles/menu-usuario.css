@@ -1,0 +1,63 @@
+:root {
+    --azul: #00B6FF;
+    --branca: #fff;
+    --cinzento: #f5f5f5;
+    --preto2: #ccc;
+}
+
+.menu-usuario {
+    width: 220px;
+    height: 150px;
+    position: absolute;
+    top: 60px;
+    right: 15px;
+    background: var(--cinzento);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    z-index: 99;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.08);
+    transition: 0.5s;
+    text-align: start;
+}
+
+.menu-usuario.admin {
+    height: 100px;
+}
+
+.menu-usuario ul li {
+    list-style: none;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.menu-usuario ul li:hover {
+    background: var(--azul);
+    color: var(--branca);
+}
+
+.menu-usuario ul li:hover .icon, 
+.menu-usuario ul li:hover .texto{
+    color: var(--branca);
+}
+
+.menu-usuario ul li .texto {
+    text-align: none;
+    font-size: 1.1rem;
+    color: var(--preto2);
+    padding: 0 10px;
+    white-space: nowrap;
+    margin-top: 2px;
+}
+
+.menu-usuario ul li a  {
+    text-decoration: none;
+}
+
+.menu-usuario ul li a .icon {
+    position: relative;
+    padding: 10px;
+    min-width: 70px;
+    color: var(--preto2);
+}

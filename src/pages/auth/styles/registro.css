@@ -1,0 +1,69 @@
+:root {
+    --azul: #00B6FF;
+    --branca: #fff;
+    --preto1: #222;
+    --preto2: #999;
+    --lilas: #9b59b6;
+    --verde: #8de02c;
+    --vermelho: #f00;
+}
+
+.registro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow-y: hidden; 
+    overflow-x: hidden;
+    width: 800px;
+    height: 600px;
+    background: var(--branca);
+    border-radius: 20px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+    gap: 60px;
+}
+
+.registro .registro-capa {
+    background: url(../../../img/background1.jpeg);
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: cover;
+    width: 38%;
+    height: 100%;
+    margin-left: -120px;
+}
+
+.registro-form {
+    width: 400px;
+    margin-right: 20px;
+    margin-left: 10px;
+}
+
+
+.registro-form .registro-form-info {
+    text-align: center;
+    color: var(--preto1);
+}
+.registro-form .registro-form-info h2 {
+    margin-bottom: 10px;
+}
+
+
+.registro-rodape {
+    text-align: center;
+}
+
+.registro-rodape a,
+.registro-form .registro-form-info a {
+    text-decoration: none;
+    color: var(--preto2);
+    font-weight: 300;
+}
+
+.login-rodape a:hover,
+.registro-form .registro-form-info a:hover {
+    font-size: 1.1rem;
+}

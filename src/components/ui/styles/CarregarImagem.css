@@ -1,0 +1,67 @@
+:root {
+    --preto: #ccc;
+    --azul: #00B6FF;
+    --branca: #fff;
+}
+.carregar-imagem {
+    width: 100%;
+    margin-top: 4px;
+}
+
+.carregar-imagem .titulo {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 2px;
+    display: block;
+}
+
+.carregar-imagem .drop {
+    border: 2px dashed var(--preto);
+    border-radius: 10px;
+    padding: 4px;
+}
+
+.carregar-imagem .drop input {
+    display: none;
+}
+
+.carregar-imagem .drop .label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 72px;
+    cursor: pointer;
+}
+
+.setImagem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.setImagem > div {
+    display: flex;
+    align-items: center;
+}
+
+.setImagem .icon {
+    color: var(--azul);
+    margin-right: 3px;
+}
+
+.setImagem p {
+    font-size: 1.14rem;
+    font-weight: 500;
+    margin-right: 10px;
+}
+
+.setImagem button {
+    background: var(--azul);
+    color: var(--branca);
+    border-radius: 10px;
+    border: 1px solid var(--azul);
+    padding: 5px 15px ;
+    outline: none;
+}

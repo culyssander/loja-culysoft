@@ -1,0 +1,109 @@
+:root {
+    --azul: #00B6FF;
+    --branca: #fff;
+    --preto1: #222;
+    --preto2: #999;
+    --lilas: #9b59b6;
+    --verde: #8de02c;
+    --vermelho: #f00;
+}
+
+.admin-vendas {
+    position: relative;
+    width: 98%;
+    padding: 20px;
+    display: grid;
+    margin-top: 10px;
+}
+
+.admin-vendas .cabelhaco {
+    position: relative;
+    display: grid;
+    /* min-height: 500px; */
+    background: var(--branca);
+    padding: 20px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+}
+
+.admin-vendas h2 {
+    font-weight: 600;
+    color: var(--azul);
+}
+
+.admin-vendas table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.admin-vendas table thead td {
+    font-weight: 600;
+}
+
+.admin-vendas table tr {
+    color: var(--preto1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.admin-vendas table tr:last-child {
+    border-bottom: none;
+}
+
+.admin-vendas table tbody tr:hover {
+    background: var(--azul);
+    color: var(--branca);
+}
+
+.admin-vendas table tbody tr:hover .activo,
+.admin-vendas table tbody tr:hover .inactivo {
+    background: var(--azul);
+    color: var(--branca);
+}
+
+.admin-vendas table tr td {
+    padding: 10px;
+}
+
+.admin-vendas table tr td:last-child {
+    text-align: end;
+}
+
+/* .admin-vendas table tr td:last-child(1) {
+    text-align: center;
+} */
+
+.admin-vendas table .activo {
+    padding:  2px 4px;
+    color: var(--verde);
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.inactivo {
+    padding:  2px 4px;
+    color: var(--vermelho);
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+table tbody td:last-child {
+    /* background-color: blueviolet; */
+    margin: 0;
+    padding: 0;
+    width: 5%;
+}
+
+table a {
+    background: var(--azul);
+    color: var(--branca);
+    padding: 12px 6px;
+}
+
+table a:last-child {
+    background-color: var(--preto1);
+    margin-left: 2px;
+    
+}

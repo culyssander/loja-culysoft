@@ -1,0 +1,40 @@
+:root {
+    --azul: #00B6FF;
+    --branca: #fff;
+    --preto1: #222;
+    --preto2: #999;
+    --lilas: #9b59b6;
+}
+
+.produto-filtro {
+    width: 180px;
+    padding: 10px;
+    margin-left: 20px;
+}
+
+.produto-filtro .cabecalho {
+    color: var(--azul);
+    text-align: center;
+    margin: 10px 0;
+}
+
+.detalhe-filtro {
+    display: flex;
+    flex-direction: column;
+}
+
+.detalhe-filtro h3 {
+    color: var(--azul);
+    margin: 10px 0;
+}
+
+.check-filtro {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    color: var(--preto1);
+}
+
+.check-filtro input {
+    margin-right: 10px;
+}

@@ -1,0 +1,121 @@
+:root {
+    --azul: #00B6FF;
+    --branca: #fff;
+    --preto1: #222;
+    --preto2: #999;
+    --lilas: #9b59b6;
+}
+
+.pagina-admin-produto-btn {
+    margin: 20px;
+    width: 100%;
+    justify-content: end;
+}
+
+.pagina-admin-produto-btn button {
+    border-radius: 20px;
+    padding: 10px 15px;
+    background: var(--azul);
+    color: var(--branca);
+    border: 1px solid var(--branca);
+    cursor: pointer;
+}
+
+.pagina-admin-produto-lista {
+    margin: 20px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 40px;
+}
+
+.shoppin-produto-card {
+    width: 250px;
+    height: 505px;
+    box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+}
+
+.shoppin-produto-card .imagem-produto {
+    /* position: relative; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.shoppin-produto-card .imagem-produto img {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.shoppin-produto-card .descricao {
+    margin-top: 10px;
+    font-size: 0.7rem;
+    border-bottom: 1px solid var(--preto2);
+}
+
+.shoppin-produto-card .descricao p {
+    margin-top: 10px;
+    margin-bottom: 8px;
+    font-size: 0.8rem;
+}
+
+.shoppin-produto-card .preco > p {
+    padding: 5px 10px;
+    font-weight: 500;
+    border-bottom: 1px solid var(--preto2);
+}
+
+.shoppin-produto-card .preco .icon {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 10px;
+    align-items: center;
+}
+
+.shoppin-produto-card .botao {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding: 5px;
+    margin-top: 5px;
+}
+
+.shoppin-produto-card .botao a {
+    background: var(--azul);
+    color: var(--branca);
+    padding: 6px;
+}
+
+.shoppin-produto-card .botao a:nth-child(2) {
+    background: var(--preto1);
+    margin-right: 5px;
+}
+
+/* TELA SALVAR PRODUTO */
+
+.salvar-produto {
+    border: 2px solid white;
+    width: 30%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow-y: hidden; 
+    overflow-x: hidden;
+    padding: 30px;
+    background: var(--branca);
+    box-shadow: 20px 10px 50px rgba(0, 0, 0, 0.4);
+    border-radius: 20px;
+    transition: 0.5s;
+    z-index: 99;
+}
+
+.salvar-produto h1 {
+    text-align: center;
+    color: var(--azul);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.08);
+}

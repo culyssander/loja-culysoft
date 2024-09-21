@@ -1,0 +1,47 @@
+:root {
+    --azul: #00B6FF;
+    --branca: #fff;
+    --preto1: #222;
+    --preto2: #999;
+    --lilas: #9b59b6;
+}
+
+.card {
+    position: relative;
+    background: var(--branca);
+    padding: 30px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+}
+
+.card .valor {
+    position: relative;
+    font-weight: 500;
+    font-size: 2.5rem;
+    color: var(--azul);
+}
+
+.card .titulo {
+    color: var(--preto1);
+    font-size: 1.1rem;
+    margin-top: 5px;
+}
+
+.card .iconBox {
+    font-size: 3.5rem;
+    color: var(--preto1);
+}
+
+.card:hover {
+    background-color: var(--azul);
+}
+
+
+.card:hover .titulo,
+.card:hover .valor,
+.card:hover .iconBox {
+    color: var(--branca);
+}

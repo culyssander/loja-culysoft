@@ -1,0 +1,75 @@
+:root {
+    --azul: #00B6FF;
+    --branca: #fff;
+    --preto1: #222;
+    --preto2: #999;
+    --lilas: #9b59b6;
+}
+
+.cartao {
+    display: flex;
+    flex-direction: column;
+}
+
+.imagem {
+    width: 300px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.imagem img {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.imagem .botaoCustomizado {
+    background: var(--azul);
+    color: var(--branca);
+    border: 1p solid var(--azul);
+    position: absolute;
+    width: 290px;
+    border-radius: 20px;
+    margin-top: 290px;
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+
+.imagem:hover .botaoCustomizado {
+    opacity: 1;
+}
+
+.informacao {
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.informacao p {
+    font-size: 1rem;
+    font-weight: bold;
+    padding-left: 10px;
+    color: var(--preto1);
+}
+
+.icon {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.descricao {
+    font-size: 0.8rem;
+    padding-left: 10px;
+    color: var(--preto2);
+}
