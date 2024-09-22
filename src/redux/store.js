@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducers from './auth-slice/auth-slice';
+import carrinhoSlice from './carrinho-slice/carrinho-slice';
 import categoriaReducer from './categoria-slice/categoria-slice';
 import utilSlice from './menu-slide/util-slice';
 import produtoSlice from "./produto-slice/produto-slice";
@@ -9,7 +10,8 @@ const store = configureStore({
         auth: authReducers,
         produtos: produtoSlice,
         util: utilSlice,
-        categorias: categoriaReducer
+        categorias: categoriaReducer,
+        carrinhos: carrinhoSlice
     }
 })
 

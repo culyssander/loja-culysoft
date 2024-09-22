@@ -1,29 +1,23 @@
+import { useDispatch, useSelector } from 'react-redux';
 import ShoppingMenu from '../../components/shopping/shopping-menu';
 import ShoppingProdutoItem from '../../components/shopping/shopping-produto-item';
 
+import { useEffect } from 'react';
+import { adicionarProdutoNoCarrinho } from '../../redux/carrinho-slice/carrinho-slice';
+import { buscaTodosProdutos } from '../../redux/produto-slice/produto-slice';
 import './styles/shopping-home.css';
 
 function ShoppingHome() {
 
-    const produto = {
-        "id": 15,
-        "nome": "Tênis Grand Court Alpha",
-        "descricao": "Tênis Grand Court Alpha",
-        "preco": 400,
-        "quantidade": 100,
-        "estado": true,
-        "datacriacao": "2024-09-14T20:14:35",
-        "ultimaAlteracao": "2024-09-14T20:14:35",
-        "imagemUrl": "https://storage.googleapis.com/condominio-foto/aad1bbcb-45bd-4490-8cb5-e674ad4a12d4.avif",
-        "marca": "Adidas",
-        "categoria": "Calçado",
-        "usuario": "Quitumba Culissander Cordeiro Ferreira"
-    }
+    const {produtos} = useSelector(state => state.produtos)
+    const dispatch = useDispatch()
+    
+    useEffect(() => {
+        dispatch(buscaTodosProdutos(null))
+    }, [dispatch])
 
-    const produtos = [produto, produto, produto, produto, produto]
-
-    function onSubmit() {
-        
+    function onSubmit(produto) {
+        dispatch(adicionarProdutoNoCarrinho(produto))
     }
 
     return (
@@ -33,8 +27,8 @@ function ShoppingHome() {
             </div>
             <div className='home-produto'>
                 {
-                    produtos && produtos.length > 0 ? 
-                        produtos.map(produto => <ShoppingProdutoItem key={produto.id} produto={produto} />)
+                    produtos && produtos.length > 0 ?
+                        produtos.map(produto => <ShoppingProdutoItem key={produto.id} produto={produto} onSubmit={onSubmit} />)
                     : null
                 }
                 

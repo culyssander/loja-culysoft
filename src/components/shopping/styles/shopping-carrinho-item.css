@@ -40,10 +40,18 @@
     font-weight: bold;
 }
 
+.sinal {
+    cursor: pointer;
+}
+
 .remover {
     margin-left: 15px;
-    background-color: var(--text-color);
-    color: #fff;
     padding: 5px;
     cursor: pointer;
+    border-radius: 50%;
+    color: var(--text-color);
+}
+
+.remover .ciclo {
+    margin-top: -5px;
 }

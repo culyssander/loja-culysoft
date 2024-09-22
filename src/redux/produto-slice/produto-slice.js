@@ -25,22 +25,27 @@ export const buscaTodosProdutos = createAsyncThunk('/produtos/todos', async(prop
 
 export const salvaProduto = createAsyncThunk('/produtos/salva', async(props) => {
     try {
-        const {imagem, formularioDado} = props
+        const {imagem, formularioDados} = props
         const cookies = new Cookies()
+        // let obj = {a: 1, b: 2, c: 3, z:26};
 
-    if (formularioDado?.id) {
-            delete formData.datacriacao
-            delete formData.usuario
-            delete formData.ultimaAlteracao
+        
 
-            if (imagem) 
-                formularioDado.imagemUrl = ''
+
+    if (formularioDados?.id || formularioDados?.id === '') {
+            delete formularioDados.datacriacao
+            delete formularioDados.usuario
+            delete formularioDados.ultimaAlteracao
+            // delete formularioDados.imagemUrl
+        if (imagem)  formularioDados.imagemUrl = ''
     }
+
+    console.log(formularioDados);
 
     let formDataInput = new FormData()
 
     formDataInput.append('file', imagem)
-    formDataInput.append('input', JSON.stringify(formularioDado))
+    formDataInput.append('input', JSON.stringify(formularioDados))
 
     const response = await fetch(`${API_URL}/produtos`,{
         method: 'POST',
@@ -55,6 +60,22 @@ export const salvaProduto = createAsyncThunk('/produtos/salva', async(props) => 
         return error
     }
 })
+
+export const removerProduto = createAsyncThunk('produtos/remover', async(props) => {
+    try {
+        const cookies = new Cookies()
+        const response = await fetch(`${API_URL}/produtos/ ${props}`,{
+            method: 'DELETE',
+            headers: {
+                Authorization: `Bearer ${cookies.get('TOKEN')}`
+            },
+        })
+
+        return response.json()
+    } catch (error) {
+        return error
+    }
+}) 
 
 const produtoSlice = createSlice({
     name: 'produtos',
@@ -73,13 +94,20 @@ const produtoSlice = createSlice({
         })
 
         build.addCase(salvaProduto.pending, (state) => {
-
+            state.estaCarregado = true
         }).addCase(salvaProduto.fulfilled, (state, action) => {
-            console.log(action);
-            
+            state.estaCarregado = false
         }).addCase(salvaProduto.rejected, (state, action) => {
-            console.log(action)
+            state.estaCarregado = false
         })
+
+        // build.addCase(removerProduto.pending, (state) => {
+        //     state.estaCarregado = true
+        // }).addCase(removerProduto.fulfilled, (state) => {
+        //     state.estaCarregado = false
+        // }).addCase(removerProduto.rejected, (state) => {
+        //     state.estaCarregado = false
+        // })
     }
 })
 

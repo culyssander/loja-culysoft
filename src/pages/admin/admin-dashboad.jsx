@@ -4,6 +4,7 @@ import AdminCard from '../../components/admin/admin-card'
 import './styles/admin-dashboard.css'
 
 function AdminDashboard() {
+
     return (
         <div className='pagina-admin-dashboard'>
             <div className="cardBox">

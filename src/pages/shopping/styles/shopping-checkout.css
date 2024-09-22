@@ -120,9 +120,22 @@
     font-size: 1rem;
 }
 
-.descricao-produtos > div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 30px
+.descricao-produtos table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.descricao-produtos table tr td {
+    padding: 0 10px;
+    color: var(--preto1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.descricao-produtos table tr td:last-child {
+    text-align: end;
+}
+
+.descricao-produtos table tr:last-child td {
+    border: none
 }

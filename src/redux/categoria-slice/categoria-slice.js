@@ -22,6 +22,8 @@ const categoriaSlide = createSlice({
         build.addCase(buscaTodasCategorias.pending, (state) => {
             state.estaCarregado = true
         }).addCase(buscaTodasCategorias.fulfilled, (state, action) => {
+            console.log('WWWWWWRRRRRRRRRRRWQQQ', action);
+            
             state.estaCarregado = false,
             state.marcas = action.payload
         }).addCase(buscaTodasCategorias.rejected, (state) => {

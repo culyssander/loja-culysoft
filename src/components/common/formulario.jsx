@@ -69,10 +69,10 @@ function Formulario({formularioControl, formularioDados, setFormularioDados, onS
     }
 
     return (
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit} key={1}>
             <div className="formulario">
                 {
-                    formularioControl.map(controlItem => (<div className="control">
+                    formularioControl.map(controlItem => (<div key={controlItem.nome} className="control">
                         <Label>{controlItem.titulo}</Label>
                         {
                             renderizarComponentePeloTipo(controlItem)

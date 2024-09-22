@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
 import Formulario from '../../components/common/formulario'
+import ShoppingCarrinho from "../../components/shopping/shopping-carrinho"
 import { moradaDeEntrega, pagamentoDoCompra } from "../../config/formulario-config"
 import './styles/shopping-checkout.css'
 
@@ -20,13 +22,21 @@ const estadoInicialDoFormularioPagamento = {
 
 function ShoppingCheckout() {
 
+    const {produtos} = useSelector(state => state.carrinhos)
     const [formularioDataMorada, setFormularioDataMorada] = useState(estadoInicialDoFormularioMorada)
     const [formularioDataPagamento, setFormularioDataPagamento] = useState(estadoInicialDoFormularioPagamento)
-    const [morada, setMorada] = useState({
-        rua: 'Rua Quitumba Ferreira',
-        numero: 400,
-        complemento: 'apt 03'
-    })
+    const [morada, setMorada] = useState(null)
+    const [total, setTotal] = useState(0)
+    const [estaVisivel, setEstaVisivel] = useState(false)
+
+    useEffect(() => {
+        let resultado = produtos.reduce((valor, produto) => valor + (produto.preco * produto.quantidade), 0)
+        setTotal(resultado)
+    }, [produtos])
+
+    function editarCompras() {
+        setEstaVisivel(true)
+    }
 
     function submitFormularioMorada() {
 
@@ -86,7 +96,10 @@ function ShoppingCheckout() {
                     <div>
                         <div className="editar">
                             <h2>Carrinho de compras</h2>
-                            <Link>Editar</Link>
+                            <Link onClick={editarCompras} >Editar</Link>
+                            {
+                                estaVisivel && <ShoppingCarrinho estaVisivel={estaVisivel} setEstaVisivel={setEstaVisivel}/>
+                            }
                         </div>
                         <div className="entraga">
                             <p>Entraga</p>
@@ -94,15 +107,25 @@ function ShoppingCheckout() {
                         </div>
                         <div className="total">
                             <p>Total</p>
-                            <p>R$1345</p>
+                            <p>R$ {total}</p>
                         </div>
                     </div>
                     <div className="descricao-produtos">
-                        <div>
-                            <p>Nome do produto</p>
-                            <p>quantidade</p>
-                            <p>preco</p>
-                        </div>
+                        {
+                            produtos && produtos.length > 0 ? 
+                            <table>
+                                {
+                                    produtos.map(produto =>
+                                        <tr>
+                                            <td>{produto.nome}</td>
+                                            <td>{produto.quantidade}</td>
+                                            <td>{produto.preco}</td>
+                                        </tr>
+                                    )
+                                }
+                            </table>: null
+                        }
+                        
                     </div>
                     
                 </div>

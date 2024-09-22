@@ -83,9 +83,9 @@ export let contraladorDoFormularioAdminProduto = [
     {
         nome: 'quantidade',
         titulo: 'Quantidade *',
-        placeholder: 'Disponibilizar para a venda?',
-        tipoDoComponente: 'checkbox',
-        tipo: 'checkbok'
+        placeholder: 'Quantidade',
+        tipoDoComponente: 'input',
+        tipo: 'number'
     },
     
 ]

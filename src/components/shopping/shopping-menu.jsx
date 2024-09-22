@@ -1,8 +1,8 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 import { shoppingMenuOpcoes } from "../../config/formulario-config";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import logo from '../../img/culysoft-logo.png';
 
 import MenuUsuario from "../common/menu-usuario";
@@ -12,21 +12,32 @@ import ShoppingCarrinho from "./shopping-carrinho";
 import './styles/shopping-menu.css';
 
 import desconhecido from '../../img/perfil-conta-desconhecido.jpg';
+import { actualizarPagina } from '../../redux/carrinho-slice/carrinho-slice';
 
 function ShoppingMenu() {
 
     const [abrirMenuUsuario, setAbrirMenuUsuario] = useState(false)
-    const [totalItemNoCarrinho, setTotalItemNoCarrinho] = useState(0)
     const [abrirCarrinho, setAbrirCarrinho] = useState(false)
     const {estaLogado, usuario} = useSelector(state => state.auth)
+    const {produtos} = useSelector(state => state.carrinhos)
+    const dispatch = useDispatch()
 
-    console.log(usuario);
-    
-
-
-    function mostrarCarrinho() {        
-        setAbrirCarrinho(!abrirCarrinho)
+    function mostrarCarrinho() {
+        if (produtos.length > 0)
+            setAbrirCarrinho(!abrirCarrinho)
     }
+
+    useEffect(() => {
+        if (produtos && produtos.length > 0)
+            sessionStorage.setItem('produtos', JSON.stringify(produtos))
+    }, [produtos])
+
+    useEffect(() => {
+        const produtoStorage = JSON.parse(sessionStorage.getItem('produtos'))
+        if (produtoStorage && produtoStorage.length > 0) {
+            dispatch(actualizarPagina(produtoStorage))
+        }
+    }, [])
 
     return (
         
@@ -46,7 +57,7 @@ function ShoppingMenu() {
             </ul>
             <div className="shopping-menu-usuario">
                 <div className="carrinho">
-                    <p>{totalItemNoCarrinho === 0 ? '' : totalItemNoCarrinho}</p>
+                    <p>{produtos.length > 0 ? produtos.length : ''}</p>
                     <ShoppingCart onClick={mostrarCarrinho} />
                 </div>
                 {

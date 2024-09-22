@@ -31,13 +31,17 @@ function Login () {
         expires.setDate(expires.getDate()+1)
 
         dispatch(loginUsuario(formularioData)).then(data => {
+            console.log(data);
+            
             if (data.payload?.status === 200) {
                 const TOKEN = data.payload.token
                 cookies.set('TOKEN', TOKEN, {expires})
                 toastSucesso(data.payload.mensagem)
-            } else {
+            } else if (data?.payload?.titulo) {
                 toastErro(data.payload.titulo)
-            }
+            } else {
+                toastErro('Servidor indisponivel')
+            } 
         })
     }
 
