@@ -147,14 +147,14 @@ export const opcaoDeOrdenar = [
 export const moradaDeEntrega = [
     {
         nome: 'rua',
-        titulo: 'Rua',
+        titulo: 'Rua *',
         placeholder: 'Digite o nome da rua',
         tipoDoComponente: 'input',
         tipo: 'text'
     },
     {
         nome: 'numero',
-        titulo: 'Numero',
+        titulo: 'Numero *',
         placeholder: 'Digite o numero da casa',
         tipoDoComponente: 'input',
         tipo: 'number'
@@ -172,28 +172,28 @@ export const moradaDeEntrega = [
 export const pagamentoDoCompra = [
     {
         nome: 'numeroCartao',
-        titulo: 'Numero do cartão',
+        titulo: 'Numero do cartão *',
         placeholder: 'Numero do cartão',
         tipoDoComponente: 'input',
         tipo: 'text'
     },
     {
         nome: 'expiracao',
-        titulo: 'Expiração',
+        titulo: 'Expiração *',
         placeholder: 'MM/YYYY',
         tipoDoComponente: 'input',
         tipo: 'text'
     },
     {
         nome: 'cvc',
-        titulo: 'CVC',
+        titulo: 'CVC *',
         placeholder: 'CVC',
         tipoDoComponente: 'input',
         tipo: 'number'
     },
     {
         nome: 'nome',
-        titulo: 'Nome Completo',
+        titulo: 'Nome Completo *',
         placeholder: 'Nome completo',
         tipoDoComponente: 'input',
         tipo: 'text'
@@ -230,3 +230,5 @@ export const editarPerfilDoUsuario = [
         tipo: 'email'
     },
 ]
+
+export const colunasDasComprasDoCliente = ["#", "Produtos", "Total", "Estado", "Data de registro"]

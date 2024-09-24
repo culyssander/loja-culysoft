@@ -12,9 +12,11 @@ export const buscaTodosProdutos = createAsyncThunk('/produtos/todos', async(prop
         let filtro = ''
 
         if (props)  {
-            const {pagina, limite, sortAtributo, sortAscendente} = props
-            filtro = `pagina=${pagina}&limite=${limite}&sortAtributo=${sortAtributo}&sortAscendente=${sortAscendente}`
+            const {pagina = 0, limite = 50, sortAtributo, sortAscendente} = props
+            filtro = `pagina=${pagina}&limite=${limite}&sortAtributo=${sortAtributo}&sortAsc=${sortAscendente}`
         }
+        console.log('filtro', filtro);
+        
         const response = await fetch(`${API_URL}/produtos?${filtro}`)
         return await response.json()
 
@@ -27,10 +29,9 @@ export const salvaProduto = createAsyncThunk('/produtos/salva', async(props) => 
     try {
         const {imagem, formularioDados} = props
         const cookies = new Cookies()
-        // let obj = {a: 1, b: 2, c: 3, z:26};
-
+        console.log(imagem, formularioDados);
         
-
+        // let obj = {a: 1, b: 2, c: 3, z:26};
 
     if (formularioDados?.id || formularioDados?.id === '') {
             delete formularioDados.datacriacao
@@ -77,6 +78,27 @@ export const removerProduto = createAsyncThunk('produtos/remover', async(props) 
     }
 }) 
 
+export const buscarTodosPeloFiltro = createAsyncThunk('/shop/products/', async({filtro, sortAtributo, sortAscendente}) => {
+    try {
+        let categoriaIds = '';
+        let marcaIds = '';
+
+        Object.keys(filtro).map( keys => {
+            if (keys === 'Categorias' && filtro[keys].length > 0 ) categoriaIds = filtro[keys].join(',')
+            if (keys === 'Marcas' && filtro[keys].length > 0 ) marcaIds = filtro[keys].join(',')
+        })
+
+        console.log('CATEGORIAS', categoriaIds);
+        
+        
+        const response = await fetch(`${API_URL}/produtos/filtro?categoriaIds=${categoriaIds}&marcaIds=${marcaIds}&sortAtributo=${sortAtributo}&sortAsc=${sortAscendente}`)
+
+        return await response.json()
+    } catch (error) {
+        return error
+    }
+})
+
 const produtoSlice = createSlice({
     name: 'produtos',
     initialState,
@@ -96,9 +118,22 @@ const produtoSlice = createSlice({
         build.addCase(salvaProduto.pending, (state) => {
             state.estaCarregado = true
         }).addCase(salvaProduto.fulfilled, (state, action) => {
+            console.log(action);
+            
             state.estaCarregado = false
         }).addCase(salvaProduto.rejected, (state, action) => {
             state.estaCarregado = false
+        })
+
+        build.addCase(buscarTodosPeloFiltro.pending, (state) => {
+            state.estaCarregado = true
+        }).addCase(buscarTodosPeloFiltro.fulfilled, (state, action) => {
+            console.log('fulfilled', state, action);
+            state.estaCarregado = false
+            state.produtos = action.payload
+        }).addCase(buscarTodosPeloFiltro.rejected, (state, action) => {
+            state.estaCarregado = false;
+            state.produtos = []
         })
 
         // build.addCase(removerProduto.pending, (state) => {

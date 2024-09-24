@@ -65,6 +65,43 @@ export const registroUsuario = createAsyncThunk('auth/registro', async(formulari
     }
 })
 
+export const actualizarUsuario = createAsyncThunk('auth/actualizar', async(formularioData) => {
+    try {
+        const response = await fetch(`${API_URL}/usuarios/actualizar-perfil`, {
+            method: 'PUT',
+            headers: {
+                'Content-type': 'application/json',
+                Authorization: `Bearer ${cookies.get('TOKEN')}`,
+            },
+            body: JSON.stringify(formularioData)
+        })
+
+        return response.json()
+    } catch (error) {
+        return error
+    }
+})
+
+export const alterarFotoDoPerfil = createAsyncThunk('/auth/alterar-foto', async(props) => {
+    try {
+    let formDataInput = new FormData()
+
+    formDataInput.append('file', props)
+
+    const response = await fetch(`${API_URL}/usuarios/alterar-foto`,{
+        method: 'PUT',
+        headers: {
+            Authorization: `Bearer ${cookies.get('TOKEN')}`
+        },
+        body: formDataInput
+    })
+
+    return await response.json()
+    } catch (error) {
+        return error
+    }
+})
+
 const authSlice = createSlice({
     name: 'auth',
     initialState,
@@ -113,6 +150,18 @@ const authSlice = createSlice({
             state.estaLogado = false
             state.usuario = null
         }).addCase(registroUsuario.rejected, (state) => {
+            state.estaCarregado = false
+            state.estaLogado = false
+            state.usuario = null
+        })
+
+        build.addCase(actualizarUsuario.pending, (state) => {
+            state.estaCarregado = true
+        }).addCase(actualizarUsuario.fulfilled, (state, action) => {
+            state.estaCarregado = false
+            state.usuario = action.payload?.estado ? action.payload : null
+            state.estaLogado = action.payload?.estado ? true : false
+        }).addCase(actualizarUsuario.rejected, (state) => {
             state.estaCarregado = false
             state.estaLogado = false
             state.usuario = null

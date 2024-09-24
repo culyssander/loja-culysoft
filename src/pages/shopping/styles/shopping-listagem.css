@@ -35,6 +35,7 @@
     justify-content: space-between;
     gap: 20px;
     margin-left: 30px;
+    margin-right: 15px;
 }
 
 .listagem-produto .ordenar span {

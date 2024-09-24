@@ -33,5 +33,23 @@ const categoriaSlide = createSlice({
     }
 })
 
+export const buscarCategoriasEMarcas = createAsyncThunk('/categorias/marca/', async() => {
+    try {
+        const marcaResponse = await fetch(`${API_URL}/marcas`)
+        const categoriaResponse = await fetch(`${API_URL}/categorias`)
+
+        const dataMarca = await marcaResponse.json()
+        const dataCategoria = await categoriaResponse.json()
+        console.log(dataMarca, dataCategoria);
+        
+        return {
+            Categorias: dataCategoria,
+            Marcas: dataMarca
+        }
+    } catch (error) {
+        return error
+    }
+})
+
 // export const { buscaTodasCategorias } = categoriaSlide.actions
 export default categoriaSlide.reducer

@@ -21,6 +21,7 @@ import ShoppingCheckout from './pages/shopping/shopping-checkout';
 import ShoppingCompra from './pages/shopping/shopping-compras';
 import ShoppingHome from './pages/shopping/shopping-home';
 import ShoppingListagem from './pages/shopping/shopping-listagem';
+import ShoppingObrigado from './pages/shopping/shopping-obrigado';
 import ShoppingPerfil from './pages/shopping/shopping-perfil';
 import { validaAutenticacao } from './redux/auth-slice/auth-slice';
 
@@ -65,6 +66,7 @@ function App() {
                     <Route path='perfil' element={<ShoppingPerfil/>}/>
                     <Route path='checkout' element={<ShoppingCheckout/>}/>
                     <Route path='compras' element={<ShoppingCompra/>}/>
+                    <Route path='obrigado' element={<ShoppingObrigado/>}/>
                 </Route>
 
                 <Route path='/' element={<ShoppingHome/>}/>

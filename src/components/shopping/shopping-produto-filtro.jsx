@@ -1,10 +1,18 @@
-import { opcaoDoFiltro } from "../../config/formulario-config";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+// import { opcaoDoFiltro } from "../../config/formulario-config";
+import { buscarCategoriasEMarcas } from "../../redux/categoria-slice/categoria-slice";
 import Label from '../ui/Label';
 import './styles/shopping-produto.filtro.css';
 
 function ShoppingProdutoFiltro({filtros, handlerFilters}) {
 
+    const [opcaoDoFiltroDoBanco, setOpcaoDoFiltroDoBanco] = useState([])
+    const dispatch = useDispatch() 
 
+    useEffect(() => {
+        dispatch(buscarCategoriasEMarcas()).then(data => setOpcaoDoFiltroDoBanco(data.payload))
+    }, [])
 
     return (
         <div className="produto-filtro">
@@ -13,20 +21,15 @@ function ShoppingProdutoFiltro({filtros, handlerFilters}) {
             </div>
             <div className="detalhe-filtro">
                 {
-                    Object.keys(opcaoDoFiltro).map(keyItem =><>
+                    Object.keys(opcaoDoFiltroDoBanco).map(keyItem =><>
                         <div>
                             <h3 key={keyItem}>{keyItem}</h3>
                             <div className="check-filtro">
                                 {
-                                    opcaoDoFiltro[keyItem].map(option=> 
+                                    opcaoDoFiltroDoBanco[keyItem].map(option=> 
                                         <Label>
                                             <input type='checkbox' onChange={() => handlerFilters(keyItem, option.nome, option.id)}
-                                            // checked = {
-                                            //     filtros && Object.keys(filtros).length > 0 &&
-                                            //     filtros[keyItem] && filtros[keyItem].indexOf(option.id) > -1
-                                            // }
                                             />
-                                            {/* {console.log(filtros[keyItem].indexOf(id))} */}
                                             {option.nome}
                                         </Label>
                                     )

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { shoppingMenuOpcoes } from "../../config/formulario-config";
 
 import { useEffect, useState } from "react";
@@ -13,9 +13,11 @@ import './styles/shopping-menu.css';
 
 import desconhecido from '../../img/perfil-conta-desconhecido.jpg';
 import { actualizarPagina } from '../../redux/carrinho-slice/carrinho-slice';
+import { buscarTodosPeloFiltro } from '../../redux/produto-slice/produto-slice';
 
-function ShoppingMenu() {
+function ShoppingMenu({filtro, setFiltro}) {
 
+    const [searchParams, setSearchParams] = useSearchParams()
     const [abrirMenuUsuario, setAbrirMenuUsuario] = useState(false)
     const [abrirCarrinho, setAbrirCarrinho] = useState(false)
     const {estaLogado, usuario} = useSelector(state => state.auth)
@@ -39,6 +41,25 @@ function ShoppingMenu() {
         }
     }, [])
 
+    function escolhePagina() {
+        console.log('CLICOU');
+        
+        let sortAtributo = 'nome', sortAscendente = 'true'
+        let id = 1
+        let valor = searchParams.get('categoria')
+        switch(valor) {
+            case 'calcado': id = 1; break;
+            case 'homem': id = 2; break
+            case 'mulher': id = 3 ; break
+            case 'crianca': id = 4; break
+            case 'acessorio': id =5; break
+        }
+
+        const filtro = 	{"Categorias":[id]}
+        dispatch(buscarTodosPeloFiltro({filtro, sortAtributo, sortAscendente}))
+        dispatch(buscarTodosPeloFiltro({filtro, sortAtributo, sortAscendente}))
+    }
+
     return (
         
         <>
@@ -50,7 +71,7 @@ function ShoppingMenu() {
             </div>
             <ul>
                 {
-                    shoppingMenuOpcoes.map(opcao => <li key={opcao.id}><Link to={opcao.link}>
+                    shoppingMenuOpcoes.map(opcao => <li key={opcao.id}><Link onClick={escolhePagina} to={opcao.link}>
                         <span>{opcao.titulo}</span>
                     </Link></li>)
                 }
@@ -66,7 +87,7 @@ function ShoppingMenu() {
             </div>
         </div>
                 {
-                    abrirMenuUsuario && <MenuUsuario abrirMenuUsuario={abrirMenuUsuario}/>
+                    abrirMenuUsuario && <MenuUsuario abrirMenuUsuario={abrirMenuUsuario} setAbrirMenuUsuario={setAbrirMenuUsuario} perfilLink={estaLogado ? usuario?.perfil === 'CLIENTE' ? '/shop/perfil': '/admin/perfil'  :'/auth/login'} comprasLink='/shop/compras'/>
                 }
                 {
                     abrirCarrinho && <ShoppingCarrinho estaVisivel={abrirCarrinho} setEstaVisivel={setAbrirCarrinho}/>

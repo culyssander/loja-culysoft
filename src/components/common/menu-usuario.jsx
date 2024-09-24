@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logoutUsuario } from "../../redux/auth-slice/auth-slice";
 import './styles/menu-usuario.css';
 
-function MenuUsuario({abrirMenuUsuario, perfilLink}) {
+function MenuUsuario({abrirMenuUsuario, setAbrirMenuUsuario, perfilLink, comprasLink}) {
 
     const { usuario} = useSelector(state => state.auth)
     const dispatch = useDispatch()
@@ -18,7 +18,7 @@ function MenuUsuario({abrirMenuUsuario, perfilLink}) {
         <div>
             {
                 abrirMenuUsuario && <div className={`menu-usuario ${usuario?.perfil === 'ADMIN'? 'admin': '' }`}>
-                <ul>
+                <ul onClick={() => { if (abrirMenuUsuario) setAbrirMenuUsuario(!abrirMenuUsuario)}}>
                     <li>
                         <Link to={perfilLink}>
                             <span className="icon"><UserRoundPen /></span>
@@ -29,7 +29,7 @@ function MenuUsuario({abrirMenuUsuario, perfilLink}) {
                     {
                         usuario?.perfil !== 'ADMIN' && 
                         <li>
-                        <Link to={perfilLink}>
+                        <Link to={comprasLink}>
                             <span className="icon"><ShoppingBag /></span>
                             <span className="texto">Compras</span>
                         </Link>

@@ -4,6 +4,7 @@
     --preto1: #222;
     --preto2: #999;
     --lilas: #9b59b6;
+    --cinza: #ccc;
 }
 
 .perfil-customizado {
@@ -30,11 +31,12 @@
     margin-bottom: 10px;
     color: var(--azul);
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.08);
+    padding-left: 5px;
 }
 
 .perfil-customizado .perfil-card img {
     width: 150px;
-    height: 150;
+    height: 150px;
     object-fit: cover;
     border-radius: 50%;
     margin: 20px 0 20px 0;
@@ -65,4 +67,5 @@
 
 .perfil-customizado .perfil-editar #email {
     pointer-events: none;
+    /* background: var(--cinza); */
 }

@@ -117,7 +117,8 @@ function TelaSalvaProduto({abrirFormulario, setAbrirFormulario, setProdutosFiltr
         if (verificaInput(nome) || verificaInput2(preco) || verificaInput2(quantidade) || categoria === 'categoria') return toastInformacao('Campos obrigatorios')
         
         dispatch(salvaProduto({formularioDados, imagem})).then(data => {
-
+            console.log('DDDDDDDDDDDDD', data.payload.status);
+            
             if(data.payload?.estado) {
                 toastSucesso('Produto registrado com sucesso')
                 dispatch(buscaTodosProdutos(null)).then(data => setProdutosFiltro(data.payload))
